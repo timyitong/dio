@@ -1,0 +1,101 @@
+.leftbar{
+	min-width:200px;
+	width:24%;
+	border-right:1px solid #eee;
+	float:left;
+}
+.rightbar{
+	width:70%;
+	float:left;
+	padding-left:20px;
+}
+.brandname{
+	float:left;
+	font-size: 20px;
+	width:100%;
+	font-size:1.23em;
+	font-weight:300;
+	font-family: AvSans,sans-serif;
+}
+.itemname{
+	float:left;
+	width:80%;
+	font-family: AvSans,sans-serif;
+	text-transform: uppercase;
+	font-size: 2em;
+}
+.rating{
+	float:left;
+	width:20%;
+}
+.edit{
+	float:right;
+	margin-right:20%;
+}
+.addButton{
+	background:#fff;
+	border:solid 1px #aaa;
+	float:left;
+	height:27px;
+	margin-left:10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+.addButton:hover{
+	background: #000;
+	color:#fff;
+}
+.textarea{
+	float:left;
+	width:450px;
+	height:21px;
+	overflow: hidden;
+	font-size:14px;
+	resize:none;
+}
+#comment_box{
+	float:left;
+	width:100%;
+	height:auto;
+	margin-top:15px;
+}
+.line{
+	width:80%;
+	float:left;
+}
+.add_list{
+	text-decoration: none;
+	font-weight: bold;
+	color:#000;
+	margin-right:20px;
+	font-size: 0.89em;
+}
+.add_list:hover{
+	color:#F08FB4;
+}
+#new_comment{
+	float:left;
+	width:80%;
+	height:auto;
+}
+.comment-feed{
+	float:left;
+	width:100%;
+	height:auto;
+	margin-bottom:15px;
+}
+#comment-list{
+	float:left;
+	width:80%;
+	height:auto;
+}
+.comment-feed-out{
+	float:left;
+	width:100%;
+	height:auto;
+}
+li{
+	float:left;
+	width:100%;
+	height:auto;
+}

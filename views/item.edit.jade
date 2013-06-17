@@ -1,0 +1,25 @@
+extends layout
+block scripts
+	script(src="/javascripts/item.edit.js")
+	link(rel='stylesheet', href='/css/item.css', type="text/css", media="screen")
+	link(rel='stylesheet', href='/css/item.edit.css', type='text/css', media='screen')
+block content
+	div.leftbar
+		if (image!=null)
+			img(src="#{image}")
+		else
+			p no_picture
+	div.rightbar
+		form(method='post',action='/items/#{id}/edit', enctype="multipart/form-data", style="float:left;width:100%")
+			span brand:
+			input(name="brand",type="text",value="#{brand}")
+			span name:
+			input(name="name",type="text",value="#{name}")
+			span color:
+			div.colorbar
+				each c, i in color
+					strong #{c}
+			div.rating 	rating:#{avg_rating}
+			div.c_times created at:#{ctime}
+			input(name="price", type="text",value="#{price}")
+			input(type="submit",value="save")

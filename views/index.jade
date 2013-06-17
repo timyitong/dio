@@ -1,0 +1,39 @@
+extends layout
+
+block scripts
+	script(src="/javascripts/dio.js")
+
+	//template for the Item
+	script(type="text/template", id="item-template")
+		div.item-feed-out
+			div.item-feed(iid="<%=_id%>")
+				div.item-image(style!="background:url(<%=image%>) no-repeat;")
+				//img(style="width:190px;height:160px;float:left",src!="<%=image%>")
+				a.item-text(style="display:none;",href!="/items/<%=_id%>")
+					span.item-brand <%=brand%>
+					br
+					span.item-name <%=name%>
+				ul.tools.unstyled
+					li.rating(style="float:left")
+						input.star(name="star1",type="radio",value="1",rating="1",onclick="sendRating(this);")
+						input.star(name="star1",type="radio",value="2",rating="2",onclick="sendRating(this);")
+						input.star(name="star1",type="radio",value="3",rating="3",onclick="sendRating(this);")
+						input.star(name="star1",type="radio",value="4",rating="4",onclick="sendRating(this);")
+						input.star(name="star1",type="radio",value="5",rating="5",onclick="sendRating(this);")
+					br
+					li.time <%=moment(ctime).fromNow()%>
+	//This is a template for the main app
+	script(type="text/template",id="stats-template")
+
+block content
+	div#dio_app(style="float:left;width:100%;height:auto;")
+		div#bar
+			- var j=0
+			each field, i in fields
+				div.field-button(style="position:relative;") #{field.name}
+				div.field-navi
+					- while(j<tags.length && tags[j].field==field.name)
+						span(style="float:left;width:100%;") #{tags[j].name}
+						- j++
+		a#new_item_box(style="float:left;width:100%;height:auto;text-decoration:none;",href="/new_item") + New Item
+		ul#item-list(style="float:left;width:100%;height:auto;padding:0;")

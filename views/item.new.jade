@@ -1,0 +1,31 @@
+extends layout
+block scripts
+	script(src="/javascripts/jquery.mockjax.js")
+	script(src="/javascripts/jquery.autocomplete.js")
+	script(src="/javascripts/item.new.js")
+block content
+	div(style="margin-left:20%;width:280px;height:auto;float:left;margin-top:40px;")
+		h(style="color:#777;float:left;height:60px;") Add New Item
+		img#preview(style="float:left;margin-left:130px;width:40px;height:40px;display:none;",src="#")
+		br
+		br
+		form#new_form(enctype="multipart/form-data", method="post", action="/api/items", style="width:100%;float:left;height:auto;")
+			label(style="color:#777;font-size:13px;padding:3px 0;width:70px;float:left;") Name
+			input(type="text", name="name",style="float:left;width:200px;")
+			br
+			br
+			label(style="color:#777;font-size:13px;padding:3px 0;width:70px;float:left;") Brand
+			input(type="text", name="brand", style="float:left;width:200px;")
+			br
+			br
+			label(style="color:#777;font-size:13px;padding:3px 0;width:70px;float:left;") Category
+			input(type="text", name="category", style="float:left;width:200px;")
+			br
+			br
+			input#pic(type="file", name="pic", accept="image/*", capture="camera",style="display:none;",onchange="var reader=new FileReader();reader.onload=function(e){$('#preview').attr('src',e.target.result).show()};reader.readAsDataURL(this.files[0])")
+			label(style="color:#777;font-size:13px;padding:3px 0;width:70px;float:left;") Desription
+			textarea(name="description",style="width:200px;height:100px;resize:none;")
+			br
+			br
+			input.button(type="submit",value="Add Item")
+			input.button(type="button",value="+ Picture",style="margin-right:80px;",onclick="$('#pic').click()")

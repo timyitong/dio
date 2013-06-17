@@ -1,0 +1,24 @@
+extends sign_layout
+block scripts
+	link(rel='stylesheet', href='/css/signup.css', type="text/css", media="screen")
+block content
+	div#signup_box
+		div.signup #{message}
+		form(method="post", action="/api/signup", enctype="multipart/form-data")
+			div.line
+				label.notice Email Address
+				input.input(type="text",name="email")
+			div.line
+				label.notice Name
+				input.input(type="text",name="name")
+			div.line
+				labe.notice Password
+				input.input(type="password",name="password")
+			div.line
+				label.notice Confirm
+				input.input(type="password",name="password2")
+			div.line(style="margin-top:20px;")
+				input#signup_button(type="submit",value="Sign Up")
+				a.back(href="/signin") Back
+
+block footer

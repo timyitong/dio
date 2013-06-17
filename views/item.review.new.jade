@@ -1,0 +1,22 @@
+extends layout
+
+block scripts
+	script(type="text/javascript",src="/javascripts/tiny_mce/tiny_mce.js")
+	script(type="text/javascript",src="/javascripts/editor.js")
+	link(rel='stylesheet', href='/css/item.review.new.css', type="text/css", media="screen")
+block content
+	div#main_box
+		h Add a New Review
+		form#new_form(enctype="multipart/form-data", method="post", action="/items/#{_id}/new_review", style="width:100%;float:left;height:auto;")
+			div.line
+				label.label Title
+				input.title(type="text",name="title")
+			div.line
+				label.label About
+				div.about 
+					a.name(href="/items/#{_id}",target="_blank") #{brand}-#{name}
+			div.line
+				label.label Content
+				textarea.textarea(name="content")
+			div.line
+				input.submit(type="submit",value="Add Review")

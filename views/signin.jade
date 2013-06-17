@@ -1,0 +1,28 @@
+extends sign_layout
+block scripts
+	link(rel='stylesheet', href='/css/signin.css', type="text/css", media="screen")
+block content
+	div#signin_box
+		div.row
+			a.signup(href="/signup") Create An Account
+		//div.fb-login-button(data-show-faces="true", data-width="152", data-max-rows="1")
+		div.row
+			span#signinButton
+				span.g-signin(data-callback="signinCallback", data-clientid="262086438321.apps.googleusercontent.com", data-cookiepolicy="single_host_origin", data-requestvisibleactions="http://schemas.google.com/AddActivity", data-scope="https://www.googleapis.com/auth/plus.login")
+		div.row
+			form.form-horizontal(method="post", action="/api/signin", enctype="multipart/form-data")
+				div.control-group
+					label.control-label(for="inputEmail") Email
+					div.controls
+						input#email(type="text",name="email")
+				div.control-group
+					label.control-label(for="inputPassword") Password
+					div.controls
+						input#password(type="password",name="password")
+				div.control-group
+					div.controls
+						label.checkbox#signin_option Remember me
+							input(type="checkbox",name="signin_option")
+						input#signin_button.btn.btn-primary(type="submit",value="Sign In")
+
+block footer

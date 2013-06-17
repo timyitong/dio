@@ -1,0 +1,62 @@
+extends layout
+block scripts
+	script(type='text/javascript')
+		var __ITEM_ID__="#{_id}"
+	script(src="/javascripts/item.js")
+	link(rel='stylesheet', href='/css/item.css', type="text/css", media="screen")
+	//template for the Comment
+	script(type="text/template", id="comment-template")
+		div.comment-feed-out
+			div.comment-feed
+				img(src!="<%=avatar%>",style="width:20px;height:20px;float:left;margin-right:5px;")
+				div.strong(style="color:#19558D;") <%=name%>
+				div.content(style="width:80%;font-size:12px;float:left;") <%=content%>
+	//This is a template for the main app
+	script(type="text/template",id="stats-template")
+block content
+	div.leftbar
+		if (image!=null)
+			img(src="#{image}")
+		else
+			p no_picture
+		div.time(style="margin-top:10px;float:left;margin-left:15px;") created #{rtime}
+
+		//	This 2 is not beautiful
+		//a.edit.time(href="/items/#{_id}/edit") edit
+		//a(href="/items/#{_id}/new_review",style="float:right;margin-left:50%;margin-right:10px;") + New Review
+	div.rightbar
+		div.brandname 
+			strong #{brand}
+		br
+		div.itemname  
+			strong #{name}
+		div.line
+			div.readonly-rating(style="padding-top:3px;")
+			- for (var i=1;i<=5;++i)
+				- if (Math.round(avg_rating)>=i)
+					input.star(name="star#{i}",type="radio",value="#{i}",rating="#{i}",checked="checked")
+				- else
+					input.star(name="star#{i}",type="radio",value="#{i}",rating="#{i}")
+			span(style="font-size:0.85em;padding-top:-5px;margin-bottom:5px;float:left;margin-left:15px;") AVERAGE:
+			span(style="font-size:0.85em;color:#F08FB4;padding-top:-5px;margin-bottom:5px;float:left;margin-left:15px;") #{avg_rating}
+
+		div.colorbar
+			each c, i in color
+				strong #{c}
+		//Thine is not beautiful
+		//div.price(style="margin-left:18px")	$#{price}
+		div.line(style="margin-top:20px;font-weight:bold;") DESCRIPTION
+		div.line 
+			p !{(description+"").replace(/\n/g,'<br/>')}
+		div.line
+			a.add_list(href="javascripts:void(0);") + Wish List
+			a.add_list(href="javascripts:void(0);") + My Collection
+		div#comment_box
+			div#new_comment
+				form#new_comment_form(enctype="multipart/form-data",method="post",action="/api/items/#{_id}/comments")
+					input#user_id(type="hidden",name="user_id",value="#{user._id}")
+					input#user_name(type="hidden",name="user_name",value="#{user.name}")
+					input#user_avatar(type="hidden",name="user_avatar",value="#{user.avatar}")
+					textarea.textarea(name="content")
+					input.addButton#send_new_comment(type="button",value="+ Review")
+			ul#comment-list

@@ -1,0 +1,54 @@
+!!!
+doctype 5
+html(lang="en")
+	head
+		title AliJoJo
+		link(rel='icon', href='/favicon.ico', type='image/x-icon')
+		link(rel='shortcut', href='/favicon.ico', type='image/x-icon')
+		link(rel="shortcut", href="/favicon.ico", type="image/vnd.microsoft.icon")
+		link(rel="icon", href="/favicon.ico", type="image/vnd.microsoft.icon")
+
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js")
+		script(src="/javascripts/moment-min.js")
+		script(src="/javascripts/jquery.rating.js")
+		script(src="/javascripts/jquery.raty.min.js")
+		script(src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js")
+		script(src="/javascripts/underscore-min.js")
+		script(src="/javascripts/backbone-min.js")
+		script(src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js")
+
+		script(src="/javascripts/header.js")
+			
+		link(rel='stylesheet', href='/css/main.css', type="text/css", media="screen")
+		link(rel='stylesheet', href='/css/reset.css', type="text/css", media="screen")
+		link(rel='stylesheet', href='/css/jquery.rating.css', type="text/css")
+		
+		// include google fonts
+		link(rel='stylesheet',href='http://fonts.googleapis.com/css?family=Open+Sans', type="text/css")
+		
+		// include bootstrap
+		link(rel='stylesheet', href='/css/bootstrap.min.css', type="text/css")
+		block scripts
+	body
+		script(src="/js/bootstrap.min.js")
+		div.navbar.navbar-inverse
+			div.navbar-inner
+				a.log.span4(style="float:left;line-height:2.5;color:#fff;text-decoration:none;font-weight:bold;",href="/") AliJoJo
+				//img(src="/images/setting.png",width="30px",height="30px;",style="float:right;margin-right:25px;")
+				//img(src="/images/mail.gif",width="30px",height="30px",style="float:right;")
+				div.btn-group.span2.offset8
+					a.btn.dropdown-toggle(data-toggle="dropdown",href="#")
+						div.user_tag #{user.name}
+						img(src="#{user.avatar}",style="float:right;width:20px;height:20px;margin-top:1px")
+					//br
+					//a#upload_avatar(href="javascript:void(0);",onclick="$('#set_avatar').click();") upload avatar
+					//form#set_avatar_form(style="width:0px;height:0px;overflow:hidden;position:absolute",method="post",action="/api/set_avatar",enctype="multipart/form-data")
+						input#set_avatar(type="file", name="set_avatar", onchange="$('#set_avatar_redirect').val(document.URL);$('#set_avatar_form').submit();")
+						input#set_avatar_redirect(type="hidden", name="redirect_to")
+					//a(href="/api/signout") sign out
+
+		div#main
+			block content
+		block footer
+			#footer
+				p	advertisers | careers | about us

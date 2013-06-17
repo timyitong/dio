@@ -1,0 +1,24 @@
+extends layout
+block scripts
+	script(src="/javascripts/category.js")
+block content
+	each tag, i in tags
+		div(item_id="#{tag._id}")
+			span #{tag.field} -->#{tag.name}
+			a(onclick!="delete_tag('#{tag._id}')",href="javascript:void(0);") delete
+	form(method="post",action="/category",enctype="multipart/form-data")
+		input(type="hidden",name="nametree")
+		input(type="hidden",name="idtree")
+		label field:
+		select(name="field")
+			each field, i in fields
+				option(value="#{field.name}") #{field.name}
+		label name:
+		input(type="text",name="name")
+		input(type="submit",value="add")
+	br
+	br
+	form(method="post",action="/field",enctype="multipart/form-data")
+		label new field:
+		input(type="text",name="name")
+		input(type="submit",value="add")
